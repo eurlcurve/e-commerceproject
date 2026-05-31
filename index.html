@@ -444,8 +444,13 @@ async function order() {
   const phone = document.getElementById("phone").value.trim();
   const wilaya = document.getElementById("wilaya").value.trim();
   const commune = document.getElementById("commune").value.trim();
-  const color = document.getElementById("color").value;
-  const cushions = document.getElementById("cushions").value;
+  const color = selected === "box"
+  ? ""
+  : document.getElementById("color").value;
+
+const cushions = selected === "box"
+  ? ""
+  : document.getElementById("cushions").value;
   const delivery = document.querySelector('input[name="delivery"]:checked')?.value;
 
   // validation رقم الهاتف
@@ -455,16 +460,16 @@ async function order() {
   }
 
   const data = {
-    name,
-    phone,
-    wilaya,
-    commune,
-    color,
-    cushions,
-    delivery,
-    price: document.getElementById("price").innerText
-  };
-
+  name,
+  phone,
+  wilaya,
+  commune,
+  color,
+  cushions,
+  delivery,
+  price: document.getElementById("price").innerText,
+  product_type: selected
+};
   try {
     const res = await fetch("https://script.google.com/macros/s/AKfycby7-Wai9T3nEHfiVKVncdIkiDh6SSX6BQ2yVMtCLQXiBRIdCb6yEG17cVmDt1PWOshP/exec", {
       method: "POST",
