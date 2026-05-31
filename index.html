@@ -466,7 +466,7 @@ async function order() {
   };
 
   try {
-    const res = await fetch("PUT_YOUR_GOOGLE_SCRIPT_URL_HERE", {
+    const res = await fetch("https://script.google.com/macros/s/AKfycby7-Wai9T3nEHfiVKVncdIkiDh6SSX6BQ2yVMtCLQXiBRIdCb6yEG17cVmDt1PWOshP/exec", {
       method: "POST",
       body: JSON.stringify(data)
     });
