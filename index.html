@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>باقة البيكنيك</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f6f8fc;
+  color: #111;
+}
+.delivery-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.04);
+}
+
+.delivery-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(249,115,22,0.12);
+}
+
+.delivery-card input {
+  accent-color: #f97316;
+  transform: scale(1.2);
+}
+
+.delivery-card:has(input:checked) {
+  border: 2px solid #f97316;
+  box-shadow: 0 0 15px rgba(249,115,22,0.2);
+}
+/* ===== SLIDER ===== */
+.slider {
+  display: flex;
+  gap: 14px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 18px;
+}
+
+.slider-track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: slideMove 18s linear infinite;
+}
+
+.slider img {
+  width: 80vw;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* حركة سلسة */
+@keyframes slideMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* 🔥 يجعلها مربعة */
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  transition: 0.25s;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(249,115,22,0.25);
+}
+
+/* 📱 موبايل */
+@media (max-width: 600px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  padding: 16px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(249,115,22,0.12);
+}
+
+.active {
+  border: 2px solid #f97316;
+  box-shadow: 0 10px 25px rgba(249,115,22,0.18);
+}
+
+/* ===== INPUTS ===== */
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+  transition: 0.2s;
+  background: white;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #f97316;
+  box-shadow: 0 0 0 4px rgba(249,115,22,0.12);
+}
+
+/* ===== BUTTON ===== */
+.btn {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  color: white;
+  padding: 14px;
+  border-radius: 16px;
+  font-weight: bold;
+  transition: 0.2s;
+  width: 100%;
+}
+
+.btn:hover {
+  transform: scale(1.02);
+}
+
+/* spacing */
+.section {
+  margin-bottom: 26px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="max-w-5xl mx-auto p-4">
+
+<!-- TITLE -->
+<div class="text-center section">
+<h1 class="text-3xl font-bold">🏕️ باقة البيكنيك</h1>
+<p class="text-gray-500 mt-2">تجربة فاخرة + توصيل لكل الجزائر</p>
+</div>
+
+<!-- SLIDER 5 IMAGES -->
+<div class="slider section">
+
+  <div class="slider-track">
+
+    <img src="images/prod1.jpeg">
+    <img src="images/prod2.jpeg">
+    <img src="images/prod3.jpeg">
+    <img src="images/prod4.jpeg">
+    <img src="images/prod5.jpeg">
+
+    <!-- تكرار الصور (مهم جدًا لعمل loop سلس) -->
+    <img src="images/prod1.jpeg">
+    <img src="images/prod2.jpeg">
+    <img src="images/prod3.jpeg">
+    <img src="images/prod4.jpeg">
+    <img src="images/prod5.jpeg">
+
+  </div>
+
+</div>
+
+<!-- OPTIONS -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 section">
+
+<div id="pack" class="card">
+<p class="font-bold text-lg">Pack كامل</p>
+<p class="text-gray-500">بيكنيك + علب حفظ</p>
+<p class="text-orange-500 font-bold">5000 دج</p>
+</div>
+
+<div id="picnic" class="card">
+<p class="font-bold text-lg">بيكنيك فقط</p>
+<p class="text-gray-500">سلة بيكنيك</p>
+<p class="text-orange-500 font-bold">3500 دج</p>
+</div>
+
+<div id="box" class="card">
+<p class="font-bold text-lg">علب الأكل</p>
+<p class="text-gray-500">منتج منفصل</p>
+<p class="text-orange-500 font-bold">2500 دج</p>
+</div>
+
+</div>
+
+<!-- FORM -->
+<div class="bg-white p-5 rounded-2xl shadow-sm section">
+
+<div id="custom">
+
+<label>لون البيكنيك</label>
+<select id="color" class="input">
+<option>أسود</option>
+<option>اصفر</option>
+<option>احمر</option>
+<option>ازرق</option>
+</select>
+
+<label>عدد الوسائد</label>
+<select id="cushions" class="input">
+<option value="2">2 وسائد</option>
+<option value="4">4 (+1000 دج)</option>
+<option value="6">6 (+2000 دج)</option>
+<option value="8">8 (+3000 دج)</option>
+</select>
+
+</div>
+
+<input id="name" class="input" placeholder="الاسم">
+<input id="phone" class="input" placeholder="الهاتف">
+<label>الولاية</label>
+<select id="wilaya" class="input" onchange="update()">
+
+  <option value="">اختر الولاية</option>
+
+  <option>أدرار</option>
+  <option>الشلف</option>
+  <option>الأغواط</option>
+  <option>أم البواقي</option>
+  <option>باتنة</option>
+  <option>بجاية</option>
+  <option>بسكرة</option>
+  <option>بشار</option>
+  <option>البليدة</option>
+  <option>البويرة</option>
+  <option>تمنراست</option>
+  <option>تبسة</option>
+  <option>تلمسان</option>
+  <option>تيارت</option>
+  <option>تيزي وزو</option>
+  <option>الجزائر</option>
+  <option>الجلفة</option>
+  <option>جيجل</option>
+  <option>سطيف</option>
+  <option>سعيدة</option>
+  <option>سكيكدة</option>
+  <option>سيدي بلعباس</option>
+  <option>عنابة</option>
+  <option>قالمة</option>
+  <option>قسنطينة</option>
+  <option>المدية</option>
+  <option>مستغانم</option>
+  <option>المسيلة</option>
+  <option>معسكر</option>
+  <option>ورقلة</option>
+  <option>وهران</option>
+  <option>البيض</option>
+  <option>إليزي</option>
+  <option>برج بوعريريج</option>
+  <option>بومرداس</option>
+  <option>الطارف</option>
+  <option>تندوف</option>
+  <option>تيسمسيلت</option>
+  <option>الوادي</option>
+  <option>خنشلة</option>
+  <option>سوق أهراس</option>
+  <option>تيبازة</option>
+  <option>ميلة</option>
+  <option>عين الدفلى</option>
+  <option>النعامة</option>
+  <option>عين تموشنت</option>
+  <option>غرداية</option>
+  <option>غليزان</option>
+  <option>تيميمون</option>
+  <option>برج باجي مختار</option>
+  <option>أولاد جلال</option>
+  <option>بني عباس</option>
+  <option>عين صالح</option>
+  <option>عين قزام</option>
+  <option>تقرت</option>
+  <option>جانت</option>
+  <option>المغير</option>
+  <option>المنيعة</option>
+
+</select>
+<input id="commune" class="input" placeholder="العنوان بالتفصيل">
+<!-- DELIVERY SECTION (FINAL STEP) -->
+<div class="section">
+
+  <h3 class="font-bold text-lg mb-3">
+    🚚 طريقة التوصيل (آخر خطوة)
+  </h3>
+
+  <div class="grid grid-cols-2 gap-3">
+
+    <label class="delivery-card">
+      <input type="radio" name="delivery" value="home" checked onchange="update()">
+      <div>
+        <p class="font-bold">🏠 للمنزل</p>
+        <p class="text-sm text-gray-500">800 دج</p>
+      </div>
+    </label>
+
+    <label class="delivery-card">
+      <input type="radio" name="delivery" value="office" onchange="update()">
+      <div>
+        <p class="font-bold">🏢 للمكتب</p>
+        <p class="text-sm text-gray-500">400 دج</p>
+      </div>
+    </label>
+
+  </div>
+
+</div>
+<!-- PRICE -->
+<div class="text-center my-3 text-xl font-bold text-orange-500">
+السعر: <span id="price">5000</span> دج
+</div>
+
+<button onclick="order()" class="btn">
+تأكيد الطلب
+</button>
+
+</div>
+
+</div>
+
+<p class="text-center text-gray-500 mb-3">
+شاهد جودة المنتج قبل الطلب
+</p>
+<!-- REAL PRODUCT GALLERY -->
+<div class="section mt-6">
+
+  <h2 class="text-center text-lg font-bold mb-4">
+    📸 صور حقيقية للمنتج
+  </h2>
+
+  <div class="gallery">
+
+    <img src="images/prod1.jpeg">
+    <img src="images/prod2.jpeg">
+    <img src="images/prod3.jpeg">
+    <img src="images/prod4.jpeg">
+    <img src="images/prod5.jpeg">
+    <img src="images/prod6.jpeg">
+
+  </div>
+
+</div>
+<script>
+
+let selected = "pack";
+
+/* base price */
+function base() {
+  if (selected === "pack") return 5000;
+  if (selected === "picnic") return 3500;
+  return 2500;
+}
+
+/* cushions */
+function cushion() {
+  if (selected === "box") return 0;
+
+  let c = +document.getElementById("cushions").value;
+
+  if (c === 4) return 1000;
+  if (c === 6) return 2000;
+  if (c === 8) return 3000;
+  return 0;
+}
+
+/* delivery */
+function delivery() {
+  const selected = document.querySelector('input[name="delivery"]:checked');
+  return selected?.value === "home" ? 800 : 400;
+}
+
+/* update price */
+function update() {
+  document.getElementById("price").innerText =
+    base() + cushion() + delivery();
+}
+setInterval(() => {
+  const slider = document.querySelector(".slider");
+
+  if (!slider) return;
+
+  const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+  // إذا وصل للنهاية يرجع للبداية
+  if (slider.scrollLeft >= maxScroll - 5) {
+    slider.scrollTo({ left: 0, behavior: "smooth" });
+  } else {
+    slider.scrollBy({ left: 280, behavior: "smooth" });
+  }
+
+}, 2000);
+
+/* select product */
+function select(type) {
+  selected = type;
+
+  document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+  document.getElementById(type).classList.add("active");
+
+  document.getElementById("custom").style.display =
+    type === "box" ? "none" : "block";
+
+  update();
+}
+
+/* events */
+document.getElementById("pack").onclick = () => select("pack");
+document.getElementById("picnic").onclick = () => select("picnic");
+document.getElementById("box").onclick = () => select("box");
+
+document.getElementById("cushions").onchange = update;
+document.getElementById("delivery").onchange = update;
+
+/* order */
+async function order() {
+
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const wilaya = document.getElementById("wilaya").value.trim();
+  const commune = document.getElementById("commune").value.trim();
+  const color = document.getElementById("color").value;
+  const cushions = document.getElementById("cushions").value;
+  const delivery = document.querySelector('input[name="delivery"]:checked')?.value;
+
+  // validation رقم الهاتف
+  if (!/^(05|06|07)[0-9]{8}$/.test(phone)) {
+    alert("رقم الهاتف غير صحيح");
+    return;
+  }
+
+  const data = {
+    name,
+    phone,
+    wilaya,
+    commune,
+    color,
+    cushions,
+    delivery,
+    price: document.getElementById("price").innerText
+  };
+
+  try {
+    const res = await fetch("PUT_YOUR_GOOGLE_SCRIPT_URL_HERE", {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.text();
+
+    if (result === "success") {
+      alert("✅ تم إرسال الطلب بنجاح");
+    } else {
+      alert("❌ حدث خطأ");
+    }
+
+  } catch (err) {
+    alert("❌ فشل الاتصال");
+    console.log(err);
+  }
+}
+
+/* init */
+select("pack");
+
+</script>
+
+</body>
+</html>
